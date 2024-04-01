@@ -9,7 +9,7 @@ import {
 import { windowWith } from "../utils/diamentions";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 
-const SignUpScreen = () => {
+const SignInScreen = ({navigation}) => {
   // State variable to hold the password
   const [password, setPassword] = useState("");
 
@@ -22,7 +22,7 @@ const SignUpScreen = () => {
   };
   return (
     <View>
-      <Text style={styles.welcome}>Create an Account</Text>
+      <Text style={styles.welcome}>Welcome Back!</Text>
       {/* email input */}
       <View>
         <Text>Email address</Text>
@@ -57,15 +57,36 @@ const SignUpScreen = () => {
         </View>
       </View>
 
-      {/* SignUp btn */}
-      <TouchableOpacity style={styles.logInBtn}>
+      <View style={styles.rememberView}>
+        <Text
+          style={{
+            color: "gray",
+            fontSize: 14,
+          }}
+        >
+          Remember me
+        </Text>
+        <Text
+          style={{
+            color: "gray",
+            fontSize: 14,
+          }}
+        >
+          Forget Password
+        </Text>
+      </View>
+
+      {/* Login btn */}
+      <TouchableOpacity
+      // onPress={() => navigation.navigate("SignUpScreen")}
+      style={styles.logInBtn}>
         <Text
           style={{
             color: "#fff",
             fontSize: 14,
           }}
         >
-          Sign Up
+          Login
         </Text>
       </TouchableOpacity>
     </View>
@@ -83,7 +104,7 @@ const styles = StyleSheet.create({
     borderColor: "#F2F2F2",
     borderWidth: 1,
     paddingVertical: 10,
-    paddingRight: 10,
+    paddingHorizontal:14,
     marginTop: 5,
     width: windowWith - 25,
     backgroundColor: "#F2F2F2",
@@ -120,4 +141,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignUpScreen;
+export default SignInScreen;

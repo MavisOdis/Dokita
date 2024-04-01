@@ -1,10 +1,21 @@
 import React from "react";
 import { View, Text, SafeAreaView } from "react-native";
 import { Stack } from "expo-router";
-import SigUpScreen from "../screens/SignUpScreen";
+import SignInScreen from "../screens/SignInScreen";
+import { NavigationContainer } from "@react-navigation/native";
+
+
+// const Stack = createNativeStackNavigator();
 
 export default function index() {
   return (
+    // <NavigationContainer>
+    //   <Stack.Navigator>
+    //     <Stack.Screen component={MainScreen} name='Main' options={{headerShown: false}}/>
+    //     <Stack.Screen component={HomeScreen} name='Home' options={{headerShown: false}}/>
+    //   </Stack.Navigator>
+    //   </NavigationContainer>
+
     <SafeAreaView
       style={{
         flex: 1,
@@ -18,15 +29,7 @@ export default function index() {
           headerShadowVisible: false,
         }}
       />
-      <View>
-        <Text
-          style={{
-            textTransform: "uppercase",
-          }}
-        >
-          <SigUpScreen/>
-        </Text>
-      </View>
+        <SignInScreen/>
     </SafeAreaView>
   );
 }
