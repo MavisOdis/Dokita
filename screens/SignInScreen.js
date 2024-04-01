@@ -5,9 +5,12 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  Image,
+  SafeAreaView
 } from "react-native";
-import { windowWith } from "../utils/diamentions";
-import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+import { windowHeight, windowWith } from "../utils/diamentions";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { router } from "expo-router";
 
 const SignInScreen = ({navigation}) => {
   // State variable to hold the password
@@ -21,7 +24,10 @@ const SignInScreen = ({navigation}) => {
     setShowPassword(!showPassword);
   };
   return (
-    <View>
+    <SafeAreaView style={{
+      flex: 1,
+      backgroundColor: "#ff",
+    }}>
       <Text style={styles.welcome}>Welcome Back!</Text>
       {/* email input */}
       <View>
@@ -78,7 +84,6 @@ const SignInScreen = ({navigation}) => {
 
       {/* Login btn */}
       <TouchableOpacity
-      // onPress={() => navigation.navigate("SignUpScreen")}
       style={styles.logInBtn}>
         <Text
           style={{
@@ -89,7 +94,61 @@ const SignInScreen = ({navigation}) => {
           Login
         </Text>
       </TouchableOpacity>
-    </View>
+
+      <View style={{
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'center',
+        marginTop: 20
+      }}>
+        <Text style={{marginHorizontal:10, color:'#DFDFDF'}}>-----------------</Text>
+        <Text style={{color:'#000000', fontSize:14}}>
+          or Login with
+        </Text>
+        <Text style={{marginHorizontal:10, color:'#DFDFDF'}}>-----------------</Text>
+      </View>
+
+      <View style={{flexDirection:'row', justifyContent:'space-between',marginTop:30}}>
+        {/* facebook login */}
+        <TouchableOpacity style={{
+          flexDirection:'row',
+          width:180,
+          borderColor:'gray', 
+          borderWidth:1, 
+          alignItems:'center',
+          justifyContent:'center',
+          paddingVertical:14,
+          borderRadius:100,
+          }}>
+          <Image source={require('../assests/icons/facebook.png')}/>
+          <Text style={{paddingHorizontal:10}}>Facebook</Text>
+        </TouchableOpacity>
+
+        {/* Google login */}
+        <TouchableOpacity style={{
+          flexDirection:'row',
+          width:180,
+          borderColor:'gray', 
+          borderWidth:1, 
+          alignItems:'center',
+          justifyContent:'center',
+          paddingVertical:14,
+          borderRadius:100,
+          }}>
+          <Image source={require('../assests/icons/Google.png')}/>
+          <Text style={{paddingHorizontal:10}}>Google</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={{flexDirection:'row', justifyContent:'center', alignItems:'center', marginTop:100}}>
+        <Text>Don't have an account?</Text>
+        <TouchableOpacity
+        onPress={() => router.navigate('SignUpScreen')}
+        >
+          <Text style={{color:'#14C5CE',marginHorizontal:5}}>Sign up</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
   );
 };
 
@@ -136,7 +195,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 100,
     paddingVertical: 18,
-    marginTop: 20,
+    marginTop: 40,
     width: windowWith - 25,
   },
 });

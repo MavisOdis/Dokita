@@ -2,7 +2,10 @@ import { Stack } from "expo-router";
 
 const Layout = () => {
     return(
-        <Stack/>
+        <Stack>
+            <Stack.Screen name="SignUpScreen"/>
+            <Stack.Screen name="SignInScreen"/>
+        </Stack>
     );
 }
 
