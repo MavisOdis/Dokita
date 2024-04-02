@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -8,11 +8,10 @@ import {
   SafeAreaView,
 } from "react-native";
 import { windowWith } from "../utils/diamentions";
-import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Stack, useRouter } from "expo-router";
 
 const SignUpScreen = () => {
-    
   const router = useRouter();
   // State variable to hold the password
   const [password, setPassword] = useState("");
@@ -25,55 +24,60 @@ const SignUpScreen = () => {
     setShowPassword(!showPassword);
   };
   return (
-    <SafeAreaView>
-      <Stack.Screen>
-        <Text style={styles.welcome}>Create an Account</Text>
-        {/* email input */}
-        <View>
-          <Text>Email address</Text>
-          <TextInput placeholder="John@example.com" style={styles.emailInput} />
-        </View>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor: "#fff",
+        // marginTop: "25%",
+        padding:10
+      }}
+    >
+      <Text style={styles.welcome}>Create an Account</Text>
+      {/* email input */}
+      <View>
+        <Text>Email address</Text>
+        <TextInput placeholder="John@example.com" style={styles.emailInput} />
+      </View>
 
-        {/* Password input */}
-        <View
+      {/* Password input */}
+      <View
+        style={{
+          marginTop: 30,
+        }}
+      >
+        <Text>Password</Text>
+        <View style={styles.passwordView}>
+          <TextInput
+            // Set secureTextEntry prop to hide
+            //password when showPassword is false
+            secureTextEntry={!showPassword}
+            value={password}
+            onChangeText={setPassword}
+            placeholder="Enter Password"
+            placeholderTextColor="#aaa"
+            style={styles.passwordInput}
+          />
+          <MaterialCommunityIcons
+            name={showPassword ? "eye-off" : "eye"}
+            size={24}
+            color="#aaa"
+            onPress={toggleShowPassword}
+            style={{ marginRight: 20 }}
+          />
+        </View>
+      </View>
+
+      {/* SignUp btn */}
+      <TouchableOpacity style={styles.logInBtn}>
+        <Text
           style={{
-            marginTop: 30,
+            color: "#fff",
+            fontSize: 14,
           }}
         >
-          <Text>Password</Text>
-          <View style={styles.passwordView}>
-            <TextInput
-              // Set secureTextEntry prop to hide
-              //password when showPassword is false
-              secureTextEntry={!showPassword}
-              value={password}
-              onChangeText={setPassword}
-              placeholder="Enter Password"
-              placeholderTextColor="#aaa"
-              style={styles.passwordInput}
-            />
-            <MaterialCommunityIcons
-              name={showPassword ? "eye-off" : "eye"}
-              size={24}
-              color="#aaa"
-              onPress={toggleShowPassword}
-              style={{ marginRight: 20 }}
-            />
-          </View>
-        </View>
-
-        {/* SignUp btn */}
-        <TouchableOpacity style={styles.logInBtn}>
-          <Text
-            style={{
-              color: "#fff",
-              fontSize: 14,
-            }}
-          >
-            Sign Up
-          </Text>
-        </TouchableOpacity>
-      </Stack.Screen>
+          Sign Up
+        </Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
@@ -89,7 +93,7 @@ const styles = StyleSheet.create({
     borderColor: "#F2F2F2",
     borderWidth: 1,
     paddingVertical: 10,
-    paddingRight: 10,
+    paddingHorizontal:14,
     marginTop: 5,
     width: windowWith - 25,
     backgroundColor: "#F2F2F2",
@@ -101,6 +105,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F2F2F2",
     borderRadius: 20,
     paddingHorizontal: 14,
+    marginTop:5
   },
   passwordInput: {
     flex: 1,

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -8,11 +8,11 @@ import {
   Image,
   SafeAreaView
 } from "react-native";
-import { windowHeight, windowWith } from "../utils/diamentions";
+import { windowWith, windowHeight } from "../utils/diamentions";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
 
-const SignInScreen = ({navigation}) => {
+const SignInScreen = () => {
   // State variable to hold the password
   const [password, setPassword] = useState("");
 
@@ -26,7 +26,8 @@ const SignInScreen = ({navigation}) => {
   return (
     <SafeAreaView style={{
       flex: 1,
-      backgroundColor: "#ff",
+      backgroundColor: "#fff",
+      marginTop: '25%'
     }}>
       <Text style={styles.welcome}>Welcome Back!</Text>
       {/* email input */}
@@ -120,7 +121,7 @@ const SignInScreen = ({navigation}) => {
           paddingVertical:14,
           borderRadius:100,
           }}>
-          <Image source={require('../assests/icons/facebook.png')}/>
+          <Image source={require('../../assests/icons/facebook.png')}/>
           <Text style={{paddingHorizontal:10}}>Facebook</Text>
         </TouchableOpacity>
 
@@ -135,7 +136,7 @@ const SignInScreen = ({navigation}) => {
           paddingVertical:14,
           borderRadius:100,
           }}>
-          <Image source={require('../assests/icons/Google.png')}/>
+          <Image source={require('../../assests/icons/Google.png')}/>
           <Text style={{paddingHorizontal:10}}>Google</Text>
         </TouchableOpacity>
       </View>
@@ -143,7 +144,8 @@ const SignInScreen = ({navigation}) => {
       <View style={{flexDirection:'row', justifyContent:'center', alignItems:'center', marginTop:100}}>
         <Text>Don't have an account?</Text>
         <TouchableOpacity
-        onPress={() => router.navigate('SignUpScreen')}
+        // onPress={() => router.navigate('/screens/SignUpScreen')}
+        onPress={() => router.push('/screens/SignUpScreen')}
         >
           <Text style={{color:'#14C5CE',marginHorizontal:5}}>Sign up</Text>
         </TouchableOpacity>
